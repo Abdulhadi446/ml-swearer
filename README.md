@@ -27,22 +27,26 @@ A **creative swearing generator** — a model trained to produce *inventive, sty
 {"context": "roastme", "insult": "You look like a 'before' photo in a hair transplant ad.", "tags": ["visual", "self-deprecating", "roastme"]}
 ```
 
+Each record has three fields:
+- `context` — style register of the insult
+- `insult` — the insult text (target)
+- `tags` — style hints
+
+## Training
+
+Use `context` as the style-conditioned prompt and `insult` as the target. Train with the script below:
+
+```bash
+python train.py --data data/combined.jsonl --epochs 3 --output-dir ./model
+```
+
+See `train.py` for full CLI options. The model learns to map `context` → `insult`, so at inference time you pass a style (e.g. `shakespearean`) and it generates a creative insult in that register.
+
 ## Generate / add more styles
 
 Five subagents each produced 100 synthetic entries (shakespearean, grose-1785, modern-british, roastme, absurdist). The generator script `data/raw/fetch_wikisource.py` shows the source-collection pattern.
 
-## Training
-
-Use `context` as the style-conditioned prompt and `insult` as the target. See `data/raw/fetch_wikisource.py` for the collection script.
-
-### Format
-
-```jsonl
-{"context": "shakespearean", "insult": "Thou art a boil, a plague-sore, an embossed carbuncle in corrupted flesh.", "tags": ["archaic", "medical", "extended-metaphor", "shakespeare"]}
-{"context": "roastme", "insult": "You look like a 'before' photo in a hair transplant ad.", "tags": ["visual", "self-deprecating", "roastme"]}
-```
-
-### Blocked sources
+## Blocked sources
 
 - **Project Gutenberg** — down for maintenance (503 every request)
 - **Bartleby** — Cloudflare challenge wall
@@ -56,6 +60,6 @@ Use `context` as the style-conditioned prompt and `insult` as the target. See `d
 3. Kaggle datasets → RoastMe CSV, insult corpora
 4. Wikisource resolve redirects → follow redirects to actual `Hamlet_(Shakespeare)` pages
 
-## Training
+## License
 
-See `data/raw/fetch_wikisource.py` for the collection script. For training, use the `context` field as the style-conditioned prompt and the `insult` field as the target.
+Mixed — see `data/creative_insults_metadata.json` per context. Public domain for Grose/Shakespeare-derived content; synthetic entries are original work; Wikipedia-derived content is CC BY-SA 4.0.
