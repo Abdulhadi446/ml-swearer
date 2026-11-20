@@ -6,6 +6,16 @@ A **creative swearing generator** — a model trained to produce *inventive, sty
 
 `data/combined.jsonl` — 561 unique records across 8 style contexts (single consolidated file).
 
+### Splits (fine-tuning)
+
+- `data/train.jsonl` — 448 records
+- `data/validation.jsonl` — 56 records
+- `data/test.jsonl` — 57 records
+
+Instruct format also provided in `*_instruct.jsonl` (`instruction` / `input` / `output`).
+
+See `dataset_card.md` for the full fine-tuning dataset card.
+
 ### Source context breakdown
 
 | Context | Records | Origin |
