@@ -1,0 +1,6 @@
+.playwright-mcp/
+shake.txt
+*.pyc
+__pycache__/
+.env
+*.log

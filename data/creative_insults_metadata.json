@@ -1,0 +1,78 @@
+{
+  "dataset_name": "creative_swearing_generator",
+  "version": "0.2.0",
+  "source_contexts": [
+    "shakespearean",
+    "grose-1785",
+    "modern-british",
+    "roastme",
+    "veep-style",
+    "absurdist",
+    "humor-theory",
+    "flyting"
+  ],
+  "sources": {
+    "shakespearean": {
+      "origin": "Wikisource / Shakespeare First Folio + public domain + synthetic Shakespearean-style generation",
+      "description": "Early-modern insults, insults in verse, extended metaphors (boil/plague-sore/carbuncle)",
+      "license": "public domain / synthetic"
+    },
+    "grose-1785": {
+      "origin": "Francis Grose, A Classical Dictionary of the Vulgar Tongue (1785) + synthetic Grose-style generation",
+      "description": "Archaic insult lexicon entries with dictionary-style definitions",
+      "license": "public domain / synthetic"
+    },
+    "modern-british": {
+      "origin": "Curated from Veep-style TV drama + British comedy + synthetic modern-British generation",
+      "description": "Escalating, absurdist, food-based insults with contemporary British profanity",
+      "license": "not evaluated / synthetic"
+    },
+    "roastme": {
+      "origin": "r/RoastMe / roast comedy + synthetic roast-style generation",
+      "description": "Backhanded compliments, visual roasts, creative put-downs",
+      "license": "not evaluated / synthetic"
+    },
+    "veep-style": {
+      "origin": "Veep TV drama - insult escalation, self-correction",
+      "description": "Character-voice style insults",
+      "license": "fair use (no training data intended)"
+    },
+    "absurdist": {
+      "origin": "Curated absurdist comedy insults + synthetic absurdist generation",
+      "description": "Absurdist, surreal, computational/tech-metaphor insults",
+      "license": "not evaluated / synthetic"
+    },
+    "humor-theory": {
+      "origin": "Wikipedia: Insult (theory of insult responses, types)",
+      "description": "Comedy theory: Retort Courteous, Quip Modest, etc.",
+      "license": "CC BY-SA 4.0"
+    },
+    "flyting": {
+      "origin": "Wikipedia: Insult + Scottish/Norse flyting traditions",
+      "description": "Insult-poetry contests",
+      "license": "CC BY-SA 4.0"
+    }
+  },
+  "generation_method": "5 subagents × 100 entries each (500 synthetic) + 61 original curated = 561 total",
+  "train_file": "creative_insults.jsonl",
+  "format": "jsonl",
+  "fields": {
+    "context": "style register of the insult",
+    "insult": "the insult text",
+    "tags": ["style hints"]
+  },
+  "stats": {
+    "total_records": 561,
+    "contexts": 8,
+    "by_context": {
+      "shakespearean": 97,
+      "grose-1785": 116,
+      "modern-british": 110,
+      "roastme": 112,
+      "veep-style": 11,
+      "absurdist": 103,
+      "humor-theory": 8,
+      "flyting": 4
+    }
+  }
+}
