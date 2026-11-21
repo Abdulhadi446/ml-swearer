@@ -1,0 +1,255 @@
+[
+  {
+    "id": "absurdist_you_have_the_moral_c",
+    "context": "absurdist",
+    "reference_insult": "you have the moral compass of a shopping cart with one broken wheel",
+    "tags": [
+      "style",
+      "insult"
+    ]
+  },
+  {
+    "id": "absurdist_your_conversation_st",
+    "context": "absurdist",
+    "reference_insult": "your conversation style is a screensaver from 1998 \u2014 technically moving, going nowhere",
+    "tags": [
+      "style",
+      "insult"
+    ]
+  },
+  {
+    "id": "absurdist_you're_a_cloud_shape",
+    "context": "absurdist",
+    "reference_insult": "you're a cloud shaped like nothing, raining on a parade you weren't invited to",
+    "tags": [
+      "style",
+      "insult"
+    ]
+  },
+  {
+    "id": "absurdist_your_small_talk_is_a",
+    "context": "absurdist",
+    "reference_insult": "your small talk is a desert with a single cactus shaped like awkwardness",
+    "tags": [
+      "style",
+      "insult"
+    ]
+  },
+  {
+    "id": "absurdist_you're_the_typo_in_t",
+    "context": "absurdist",
+    "reference_insult": "you're the typo in the recipe that turns cake into concrete",
+    "tags": [
+      "style",
+      "insult"
+    ]
+  },
+  {
+    "id": "flyting_Mozart's_mock-insult",
+    "context": "flyting",
+    "reference_insult": "Mozart's mock-insult: 'O du eselhafter Peierl' \u2014 Oh, you asinine Peierl, mocking a friend's fart joke.",
+    "tags": [
+      "comedy",
+      "classical",
+      "musical"
+    ]
+  },
+  {
+    "id": "grose-1785_Ye_crusty-backed_bot",
+    "context": "grose-1785",
+    "reference_insult": "Ye crusty-backed bottle-jack, thy honor is a cracked bottle fit only for swill.",
+    "tags": [
+      "style",
+      "insult"
+    ]
+  },
+  {
+    "id": "grose-1785_Ye_grog-bellied_swil",
+    "context": "grose-1785",
+    "reference_insult": "Ye grog-bellied swill-bowl sycophant, thy wit is crusty mold upon a grog-cask.",
+    "tags": [
+      "style",
+      "insult"
+    ]
+  },
+  {
+    "id": "grose-1785_Jade_-_a_mean,_tired",
+    "context": "grose-1785",
+    "reference_insult": "Jade - a mean, tired nag of a woman; a broken-down horse.",
+    "tags": [
+      "archaic",
+      "18th-century",
+      "grose",
+      "gendered"
+    ]
+  },
+  {
+    "id": "grose-1785_Ye_leaky_swill-bowl_",
+    "context": "grose-1785",
+    "reference_insult": "Ye leaky swill-bowl sycophant, thou art a corked bottle full of nothing but wind and flat ale.",
+    "tags": [
+      "style",
+      "insult"
+    ]
+  },
+  {
+    "id": "grose-1785_Whore_-_a_woman_give",
+    "context": "grose-1785",
+    "reference_insult": "Whore - a woman given to unlawful sex; a common harlot.",
+    "tags": [
+      "archaic",
+      "18th-century",
+      "grose",
+      "sexual"
+    ]
+  },
+  {
+    "id": "modern-british_miserable_cunt_of_th",
+    "context": "modern-british",
+    "reference_insult": "miserable cunt of the year",
+    "tags": [
+      "style",
+      "insult"
+    ]
+  },
+  {
+    "id": "modern-british_shite-for-brains",
+    "context": "modern-british",
+    "reference_insult": "shite-for-brains",
+    "tags": [
+      "style",
+      "insult"
+    ]
+  },
+  {
+    "id": "modern-british_nob-wiper",
+    "context": "modern-british",
+    "reference_insult": "nob-wiper",
+    "tags": [
+      "style",
+      "insult"
+    ]
+  },
+  {
+    "id": "modern-british_arse-wipe",
+    "context": "modern-british",
+    "reference_insult": "arse-wipe",
+    "tags": [
+      "style",
+      "insult"
+    ]
+  },
+  {
+    "id": "modern-british_certified_muppet",
+    "context": "modern-british",
+    "reference_insult": "certified muppet",
+    "tags": [
+      "style",
+      "insult"
+    ]
+  },
+  {
+    "id": "roastme_your_intelligence_pe",
+    "context": "roastme",
+    "reference_insult": "your intelligence peaks at guessing which door to push",
+    "tags": [
+      "style",
+      "insult"
+    ]
+  },
+  {
+    "id": "roastme_You_look_like_what_y",
+    "context": "roastme",
+    "reference_insult": "You look like what you'd find under a sofa cushion.",
+    "tags": [
+      "visual",
+      "roastme"
+    ]
+  },
+  {
+    "id": "roastme_you're_so_slow_you_g",
+    "context": "roastme",
+    "reference_insult": "you're so slow you get lapped by stationary objects",
+    "tags": [
+      "style",
+      "insult"
+    ]
+  },
+  {
+    "id": "roastme_you're_so_pathetic_y",
+    "context": "roastme",
+    "reference_insult": "you're so pathetic you make a sad trombone look optimistic",
+    "tags": [
+      "style",
+      "insult"
+    ]
+  },
+  {
+    "id": "roastme_you're_a_human_typo_",
+    "context": "roastme",
+    "reference_insult": "you're a human typo in a world that never proofreads",
+    "tags": [
+      "style",
+      "insult"
+    ]
+  },
+  {
+    "id": "shakespearean_Away,_you_whoreson_m",
+    "context": "shakespearean",
+    "reference_insult": "Away, you whoreson mandrake! You are a boil, a plague-sore, an embossed carbuncle.",
+    "tags": [
+      "archaic",
+      "medical",
+      "shakespeare"
+    ]
+  },
+  {
+    "id": "shakespearean_Thou_art_a_beslubber",
+    "context": "shakespearean",
+    "reference_insult": "Thou art a beslubbering, onion-eyed, flap-mouthed varlet.",
+    "tags": [
+      "archaic",
+      "insult-words",
+      "shakespeare"
+    ]
+  },
+  {
+    "id": "shakespearean_Thou_art_a_lily-live",
+    "context": "shakespearean",
+    "reference_insult": "Thou art a lily-livered, flap-mouthed coward.",
+    "tags": [
+      "archaic",
+      "insult-words",
+      "shakespeare"
+    ]
+  },
+  {
+    "id": "shakespearean_Thou_art_a_lily-live",
+    "context": "shakespearean",
+    "reference_insult": "Thou art a lily-livered coward.",
+    "tags": [
+      "archaic",
+      "insult-words",
+      "shakespeare"
+    ]
+  },
+  {
+    "id": "shakespearean_Thou_art_a_weed_of_t",
+    "context": "shakespearean",
+    "reference_insult": "Thou art a weed of the field.",
+    "tags": [
+      "archaic",
+      "insult-words",
+      "shakespeare"
+    ]
+  },
+  {
+    "id": "veep-style_You're_like_a_gray,_",
+    "context": "veep-style",
+    "reference_insult": "You're like a gray, awful sponge. A gray sponge. A gray, awful, useless sponge.",
+    "tags": [
+      "escalation",
+      "self-correction"
+    ]
+  }
+]
