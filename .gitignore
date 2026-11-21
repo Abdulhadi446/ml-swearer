@@ -3,4 +3,4 @@ shake.txt
 *.pyc
 __pycache__/
 .env
-*.log
+*.logtest_results.json
