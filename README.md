@@ -70,6 +70,50 @@ Five subagents each produced 100 synthetic entries (shakespearean, grose-1785, m
 3. Kaggle datasets → RoastMe CSV, insult corpora
 4. Wikisource resolve redirects → follow redirects to actual `Hamlet_(Shakespeare)` pages
 
+## Benchmark: Sewer
+
+`data/sewer_benchmark.json` — 27 held-out test cases across 7 contexts for evaluating how well a fine-tuned model generates creative insults.
+
+### Run evaluation
+
+```bash
+# With transformers backend (needs a fine-tuned model)
+python eval_sewer.py \
+  --model ./model \
+  --benchmark data/sewer_benchmark.json \
+  --output sewer_results.json
+
+# Smoke test with mock backend
+python eval_sewer.py \
+  --backend mock \
+  --model ./model \
+  --output sewer_results.json
+```
+
+Metrics reported per run:
+- **Exact match** — normalized equality between generated and reference insult
+- **Token F1** — token-level overlap
+- **Rouge-L F1** — longest common subsequence overlap
+- **By-context breakdown** — performance per style register
+
+### Example output
+
+```
+Cases: 27
+Exact Match: 0.148
+Mean Token F1: 0.412
+Mean Rouge-L: 0.387
+
+By Context:
+  absurdist              n=  5 exact=0.20 f1=0.45 rougeL=0.41
+  flyting                n=  1 exact=0.00 f1=0.00 rougeL=0.00
+  grose-1785             n=  5 exact=0.00 f1=0.33 rougeL=0.31
+  modern-british         n=  5 exact=0.20 f1=0.60 rougeL=0.58
+  roastme                n=  5 exact=0.40 f1=0.72 rougeL=0.68
+  shakespearean          n=  5 exact=0.00 f1=0.38 rougeL=0.35
+  veep-style             n=  1 exact=0.00 f1=0.25 rougeL=0.22
+```
+
 ## License
 
 Mixed — see `data/creative_insults_metadata.json` per context. Public domain for Grose/Shakespeare-derived content; synthetic entries are original work; Wikipedia-derived content is CC BY-SA 4.0.
