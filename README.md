@@ -2,6 +2,8 @@
 
 A **creative swearing generator** — a model trained to produce *inventive, stylized* insults rather than raw abuse.
 
+Includes a **Swearing Benchmark** (`data/sewer_benchmark.json`) — 27 held-out test cases across 7 style registers used to evaluate how well a fine-tuned model generates creative insults. Run it with `eval_sewer.py`.
+
 ## Data
 
 `data/combined.jsonl` — 561 unique records across 8 style contexts (single consolidated file).
