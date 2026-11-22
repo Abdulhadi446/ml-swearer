@@ -1,0 +1,8 @@
+# QLoRA fine-tuning dependencies (Kaggle / Colab / any CUDA box)
+# torch is preinstalled on Kaggle; the pin is a floor, not a reinstall.
+torch>=2.4
+transformers>=5.20        # Qwen3.5 (qwen3_5) support landed in the 5.x line
+peft>=0.14
+accelerate>=1.0
+bitsandbytes>=0.44
+huggingface_hub>=0.26

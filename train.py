@@ -3,7 +3,7 @@
 Train a creative swearing generator conditioned on context/style.
 
 Usage:
-    python train.py --data data/combined.jsonl --epochs 3 --output-dir ./model
+    python train.py --data dataset/combined.jsonl --epochs 3 --output-dir ./model
 """
 import argparse
 import json
@@ -51,7 +51,7 @@ def build_dataset(examples, tokenizer, max_len=64):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data", default="data/combined.jsonl")
+    ap.add_argument("--data", default="dataset/combined.jsonl")
     ap.add_argument("--model", default="distilgpt2")
     ap.add_argument("--epochs", type=int, default=3)
     ap.add_argument("--batch-size", type=int, default=8)

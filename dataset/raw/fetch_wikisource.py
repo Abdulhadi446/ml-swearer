@@ -39,6 +39,6 @@ for p in PLAYS:
         print(f"FAIL: {p} - {e}")
     time.sleep(1)
 
-with open('/home/abdulhadi/Projects/ml-spearer/data/raw/shakespeare_wikisource.json', 'w') as f:
+with open('dataset/raw/shakespeare_wikisource.json', 'w') as f:
     json.dump(results, f, indent=1)
 print("SAVED")
