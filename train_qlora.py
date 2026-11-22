@@ -71,13 +71,12 @@ LORA_TARGETS = [
     "out_proj",
 ]
 
-
 # ---------------------------------------------------------------------------
 # Data (stdlib only, so --check-data runs anywhere)
 # ---------------------------------------------------------------------------
 def read_jsonl(path: Path) -> list[dict]:
     records: list[dict] = []
-    with path.open("r", encoding="utf-8") as fh:
+    with open(path, "r", encoding="utf-8") as fh:
         for lineno, line in enumerate(fh, 1):
             line = line.strip()
             if not line:
@@ -210,7 +209,12 @@ def make_collator(pad_token_id: int):
 # Model
 # ---------------------------------------------------------------------------
 def pick_dtype(torch):
-    if torch.cuda.is_available():
+    """Select dtype based on hardware availability."""
+    # TPU supports bfloat16 natively
+    if getattr(torch, "xla_available", False):
+        return torch.bfloat16
+    # GPU support
+    if getattr(torch, "cuda", False) and hasattr(torch, "is_bf16_supported"):
         try:
             if torch.cuda.is_bf16_supported():
                 return torch.bfloat16
@@ -220,7 +224,7 @@ def pick_dtype(torch):
 
 
 def gpu_supports_4bit(torch) -> bool:
-    if not torch.cuda.is_available():
+    if not getattr(torch, "cuda", False):
         return False
     try:
         major, _ = torch.cuda.get_device_capability(0)
@@ -255,7 +259,7 @@ def load_model(model_id: str, load_in_4bit: bool, dtype, device_map: str):
         except ImportError:
             raise SystemExit(
                 "This transformers build has no Qwen3.5 support. Install a newer one:\n"
-                '  pip install -U "transformers>=5.20"'
+                "  pip install -U \"transformers>=5.20\""
             )
         model = Qwen3_5ForConditionalGeneration.from_pretrained(model_id, **kwargs)
 
@@ -367,10 +371,10 @@ def main() -> None:
     except ImportError as exc:
         raise SystemExit(
             f"Missing dependency ({exc.name}). Install with:\n"
-            '  pip install -U "transformers>=5.20" peft accelerate bitsandbytes'
+            "  pip install -U \"transformers>=5.20\" peft accelerate bitsandbytes"
         )
 
-    torch = None
+    # ------------------------------------------------------------------ runtime
     try:
         import torch
     except ImportError:
@@ -379,8 +383,10 @@ def main() -> None:
                 "PyTorch is not installed. Install with:\n"
                 "  pip install torch --index-url https://download.pytorch.org/whl/cu121"
             )
+        torch = None  # Will be set later if TPU is available
 
     random.seed(args.seed)
+    torch.manual_seed(args.seed)
 
     # ------------------------------------------------------------------ data
     train_records = read_jsonl(train_path)
@@ -419,21 +425,27 @@ def main() -> None:
         print("dry run complete; model not loaded")
         return
 
-    # --------------------------------------------------------------- runtime
+    # ------------------------------------------------------------------ runtime
     torch.manual_seed(args.seed)
-    if not torch.cuda.is_available():
-        print("! No CUDA device found — training will be extremely slow on CPU.")
+    if not getattr(torch, "cuda", False) and not getattr(torch, "xla_available", False):
+        print("! No CUDA or TPU device found — training will be extremely slow on CPU.")
         print("  On Kaggle, enable the GPU accelerator in the notebook settings.")
+        print("  For TPU, ensure torch_xla is installed and enabled.")
 
     dtype = pick_dtype(torch)
-    if args.load_in_4bit and not gpu_supports_4bit(torch):
-        print("! GPU does not support bitsandbytes 4-bit (< compute capability 7.0).")
+    if args.load_in_4bit and not gpu_supports_4bit(torch) and not getattr(torch, "xla_available", False):
+        print("! TPU or GPU does not support bitsandbytes 4-bit.")
         print("  Falling back to plain LoRA in", dtype)
         args.load_in_4bit = False
 
     # ----------------------------------------------------------------- model
     print(f"Loading {args.model} (4bit={args.load_in_4bit}, dtype={dtype}) ...")
-    model = load_model(args.model, args.load_in_4bit, dtype, device_map="auto")
+    if getattr(torch, "xla_available", False):
+        # TPU: no device_map needed, let XLA handle placement
+        model = load_model(args.model, args.load_in_4bit, dtype, device_map=None)
+    else:
+        model = load_model(args.model, args.load_in_4bit, dtype, device_map="auto")
+
     model = attach_lora(model, args)
     model.print_trainable_parameters()
 
@@ -538,7 +550,6 @@ def generate_samples(model, tokenizer, args, n: int | None = None) -> None:
                                 skip_special_tokens=True).strip()
         print(f"  [{ctx}] {hint}\n    -> {text}")
 
-
 def merge_and_save(base_id: str, adapter_dir: str, out_dir: str, dtype) -> None:
     """Fold the adapter into a fresh fp16/bf16 copy of the base model."""
     import torch
@@ -551,7 +562,6 @@ def merge_and_save(base_id: str, adapter_dir: str, out_dir: str, dtype) -> None:
     merged.save_pretrained(out_dir, safe_serialization=True)
     AutoTokenizer.from_pretrained(base_id).save_pretrained(out_dir)
     print(f"Merged model saved to {out_dir}")
-
 
 def push_to_hub(repo_id: str, folder: str, private: bool) -> None:
     try:
